@@ -1,0 +1,42 @@
+RewriteEngine On
+RewriteBase /
+
+<FilesMatch "\.(?i:gif|jpe?g|jpeg|png|ico|css|js|swf)$">
+
+  <IfModule mod_headers.c>
+    Header set Cache-Control "max-age=172800, public, must-revalidate"
+  </IfModule>
+
+</FilesMatch>
+
+# Task 1: Check files and directory are exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Task 2: Redirect URLs to redirect.php
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/.]+)$ $1.php [L]
+
+# Task 3: For 400 and 500 
+ErrorDocument 404 /error.php
+ErrorDocument 500 /500.php
+
+# Task 4: For Image
+RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]
+
+# Task 5: API Request
+RewriteRule ^/?api/([^/]+)?$ api.php?rquest=$1 [L,QSA,NC]
+RewriteRule ^/?api/([^/]+)/(.+)?$ api.php?rquest=$2&namespace=$1 [L,QSA,NC]
+
+# Task 6: Redirect URLs to admin.php
+RewriteRule ^/Admin/([^/]+)?$ Admin/$1.php [L,QSA,NC]
+RewriteRule ^admin/current_page/([a-zA-Z]+)$ admin.php?current_page=$1 [QSA,L]
+
+# Task 7: For Render Detail Page
+RewriteRule ^page/([0-9]+)$ detail.php?post_id=$1 [QSA,L]
+
+# Task 8: For Render Detail Page based on category_id
+RewriteRule ^cateI/([0-9]+)$ detail.php?category_id=$1 [QSA,L]
+
+# Task 9: For Render Detail Page based on category
+RewriteRule ^category/([a-zA-Z0-9_-]+)$ detail.php?category=$1 [QSA,L]
