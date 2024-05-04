@@ -20,27 +20,6 @@ CREATE TABLE `auth` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `list_category` varchar(64) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `list_category` (`list_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE `posts` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `uploaded_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `category` varchar(50) NOT NULL,
-  `image` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
 DROP TABLE IF EXISTS `session`;
 CREATE TABLE `session` (
   `id` int NOT NULL AUTO_INCREMENT,

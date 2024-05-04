@@ -28,15 +28,3 @@ RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]
 RewriteRule ^/?api/([^/]+)?$ api.php?rquest=$1 [L,QSA,NC]
 RewriteRule ^/?api/([^/]+)/(.+)?$ api.php?rquest=$2&namespace=$1 [L,QSA,NC]
 
-# Task 6: Redirect URLs to admin.php
-RewriteRule ^/Admin/([^/]+)?$ Admin/$1.php [L,QSA,NC]
-RewriteRule ^admin/current_page/([a-zA-Z]+)$ admin.php?current_page=$1 [QSA,L]
-
-# Task 7: For Render Detail Page
-RewriteRule ^page/([0-9]+)$ detail.php?post_id=$1 [QSA,L]
-
-# Task 8: For Render Detail Page based on category_id
-RewriteRule ^cateI/([0-9]+)$ detail.php?category_id=$1 [QSA,L]
-
-# Task 9: For Render Detail Page based on category
-RewriteRule ^category/([a-zA-Z0-9_-]+)$ detail.php?category=$1 [QSA,L]
