@@ -17,6 +17,7 @@ class UserSession
     public static function authenticate($user, $pass, $fingerprint = null)
     {
         $username = User::login($user, $pass);
+        $fingerprint = self::generateUniqueIdentifier();
         if ($username) {
             $user = new User($username);
             $conn = Database::getConnection();
@@ -25,13 +26,6 @@ class UserSession
             $token = md5(random_int(0, 9999999) . $ip . $agent . time());
             $sql = "INSERT INTO `session` (`uid`, `token`, `login_time`, `ip`, `user_agent`, `active`, `fingerprint`)
             VALUES ('$user->id', '$token', now(), '$ip', '$agent', '1', '$fingerprint')";
-            // if ($conn->query($sql)) {
-            //     Session::set('session_token', $token);
-            //     Session::set('fingerprint', $fingerprint);
-            //     return $token;
-            // } else {
-            //     return false;
-            // }
             try {
                 if ($conn->query($sql)) {
                     Session::set('session_token', $token);
@@ -46,6 +40,16 @@ class UserSession
         }
     }
 
+    public static function generateUniqueIdentifier()
+    {
+        $ipAddress = $_SERVER['REMOTE_ADDR'];
+
+        $userAgent = $_SERVER["HTTP_USER_AGENT"];
+
+        $uniqueIdentifier = $ipAddress . $userAgent;
+
+        return $uniqueIdentifier;
+    }
     /*
     * Authorize function have has 4 level of checks
         1.Check that the IP and User agent field is filled.
