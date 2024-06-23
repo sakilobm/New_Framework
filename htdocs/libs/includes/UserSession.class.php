@@ -48,7 +48,9 @@ class UserSession
 
         $uniqueIdentifier = $ipAddress . $userAgent;
 
-        return $uniqueIdentifier;
+        $hashedIdentifier = hash('sha256', $uniqueIdentifier);
+
+        return $hashedIdentifier;
     }
     /*
     * Authorize function have has 4 level of checks
