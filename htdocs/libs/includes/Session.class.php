@@ -86,7 +86,7 @@ class Session
         if (is_file($script)) {
             include $script;
         } else {
-            Session::loadTemplate('_error');
+            Session::loadTemplate('core/_error');
         }
     }
     public static function getCurrentPageIdentifier()
