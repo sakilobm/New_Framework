@@ -12,28 +12,6 @@ function showToast(type, title, message) {
 
     var newToast = $('<div class="toast-item"></div>');
     newToast.addClass(lowerCaseType);
-    var subToast = newToast.append('<div class="toast ' + lowerCaseType + '"></div>');
-
-    subToast.append('<label for="t-' + lowerCaseType + '" class="close"></label>');
-    subToast.append('<h3>' + title + '</h3>');
-    subToast.append('<p>' + message + '</p>');
-
-    toastPanel.append(newToast);
-
-    newToast.find('.close').click(function (e) {
-        e.preventDefault();
-        newToast.fadeOut("slow", function () {
-            $(this).remove();
-        });
-    });
-}
-
-function showToast(type, title, message) {
-    var lowerCaseType = type.toLowerCase();
-    var toastPanel = $('.toast-panel');
-
-    var newToast = $('<div class="toast-item"></div>');
-    newToast.addClass(lowerCaseType);
 
     var subToast = $('<div class="toast ' + lowerCaseType + '"></div>');
     subToast.append('<label for="t-' + lowerCaseType + '" class="close"></label>');
