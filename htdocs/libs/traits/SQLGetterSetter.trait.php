@@ -34,7 +34,9 @@ trait SQLGetterSetter
         if ($result and $result->num_rows == 1) {
             return $result->fetch_assoc()["$var"];
         } else {
-            throw new Exception(__CLASS__ . "::__call()-> $var, field unavalaible.");
+            error_log(__CLASS__ . "::__call()-> $var, field unavalaible.");
+            return false;
+            // throw new Exception(__CLASS__ . "::__call()-> $var, field unavalaible.");
         }
     }
 
@@ -45,7 +47,14 @@ trait SQLGetterSetter
             $this->conn = Database::getConnection();
         }
         try {
-            $sql = "UPDATE `$this->table` SET `$var`='$data' WHERE `id` = $this->id;";
+            if ($data === 'INCREMENT') {
+                $sql = "UPDATE `$this->table` SET `$var` = `$var` + 1 WHERE `id` = $this->id;";
+            } elseif ($data === 'DECREMENT') {
+                $sql = "UPDATE `$this->table` SET `$var` = `$var` - 1 WHERE `id` = $this->id;";
+            } else {
+                $sql = "UPDATE `$this->table` SET `$var` = '$data' WHERE `id` = $this->id;";
+            }
+
             if ($this->conn->query($sql)) {
                 return true;
             } else {

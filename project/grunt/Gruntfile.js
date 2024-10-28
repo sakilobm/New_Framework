@@ -13,19 +13,19 @@ module.exports = function (grunt) {
             options: {
                 separator: '\n',
                 sourceMap: true,
-                banner: "/*Processed by S akil Bharath on " + datetime + "*/\n"
+                banner: "/*Processed by Sakil Bharath on " + datetime + "*/\n"
             },
-            css: {
+            admin_js: {
                 src: [
-                    '../css/**/*.css'
+                    '../js/admin/*.js',
                 ],
-                dest: 'dist/style.css',
+                dest: 'dist/admin.cc.js'
             },
-            js: {
+            index_js: {
                 src: [
-                    '../js/**/*.js'
+                    '../js/index/*.js',
                 ],
-                dest: 'dist/app.js'
+                dest: 'dist/index.cc.js'
             }
         },
         cssmin: {
@@ -35,7 +35,8 @@ module.exports = function (grunt) {
             },
             target: {
                 files: {
-                    '../../htdocs/css/style.css': ['dist/style.css']
+                    '../../htdocs/css/admin.min.css': ['dist/admin.cc.css'],
+                    '../../htdocs/css/index.min.css': ['dist/index.cc.css'],
                 }
             }
         },
@@ -45,37 +46,37 @@ module.exports = function (grunt) {
                     sourceMap: true,
                 },
                 files: {
-                    '../../htdocs/js/app.min.js': ['dist/app.js']
+                    '../../htdocs/js/admin.min.js': ['dist/admin.cc.js'],
+                    '../../htdocs/js/index.min.js': ['dist/index.cc.js'],
                 }
             }
         },
-        copy: {
-            jquery: {
-                files: [
-                    // {
-                    //     expand: true, 
-                    //     flatten: true,
-                    //     filter: 'isFile',
-                    //     src: ['bower_components/jquery/dist/*'], 
-                    //     dest: '../../htdocs/js/jquery/'
-                    // },
-                ],
-            },
-        },
+        // copy: {
+        //     jquery: {
+        //         files: [
+        //             {
+        //                 expand: true, 
+        //                 flatten: true,
+        //                 filter: 'isFile',
+        //                 src: ['bower_components/jquery/dist/*'], 
+        //                 dest: '../../htdocs/js/jquery/'
+        //             },
+        //         ],
+        //     },
+        // },
         obfuscator: {
             options: {
                 banner: '// obfuscated with grunt-contrib-obfuscator.\n',
                 debugProtection: true,
                 debugProtectionInterval: true,
-                domainLock: ['sakil.selfmade.monster']
+                // domainLock: ['sheeinfo.com']
             },
             task1: {
                 options: {
-                    // options for each sub task
                 },
                 files: {
-                    '../../htdocs/js/app.o.js': [
-                        'dist/app.js',
+                    '../../htdocs/js/admin.o.js': [
+                        'dist/admin.cc.js',
                     ]
                 }
             }
@@ -85,7 +86,7 @@ module.exports = function (grunt) {
                 files: [
                     '../css/**/*.css',
                 ],
-                tasks: ['concat:css', 'cssmin'],
+                tasks: ['cssmin'],
                 options: {
                     spawn: false,
                 },
@@ -94,7 +95,7 @@ module.exports = function (grunt) {
                 files: [
                     '../js/**/*.js'
                 ],
-                tasks: ['concat:js', 'uglify', 'obfuscator'],
+                tasks: ['uglify', 'obfuscator'],
                 options: {
                     spawn: false,
                 },

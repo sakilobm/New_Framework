@@ -1,15 +1,6 @@
 <?php
-//TODO: Implement atoload of class files
-include_once 'app/Post.class.php';
-include_once 'app/Category.class.php';
-include_once 'includes/API.class.php';
-include_once 'includes/Database.class.php';
-include_once 'includes/REST.class.php';
-include_once 'includes/Session.class.php';
-include_once 'includes/User.class.php';
-include_once 'includes/UserSession.class.php';
-include_once 'includes/WebAPI.class.php';
-include_once 'traits/SQLGetterSetter.trait.php';
+
+includeAllFiles();
 
 // use LDAP\Result;
 
@@ -36,4 +27,13 @@ function get_config($key, $default = null)
 function load_template($name)
 {
     include $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$name.php";
+}
+
+function includeAllFiles($directories = ['app/', 'includes/'])
+{
+    foreach ($directories as $directory) {
+        foreach (glob(__DIR__ . '/' . $directory . '*.php') as $file) {
+            include_once $file;
+        }
+    }
 }

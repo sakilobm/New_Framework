@@ -1,10 +1,10 @@
 {
-    "name": "apple",
+    "name": "sheeinfo",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "grunt": "cd /var/www/apple/project/grunt && grunt"
+        "grunt": "cd /root/htdocs/html/sheeinfo/project/grunt && grunt"
     },
     "author": "",
     "license": "ISC",

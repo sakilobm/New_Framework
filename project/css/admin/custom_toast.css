@@ -1,0 +1,35 @@
+/* Custome Toast */
+.custom-toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #7B66FF;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    display: none;
+    z-index: 1;
+}
+
+.custom-toast.show {
+    display: block;
+    animation: fadeOut 10s forwards;
+    /* Adjust the duration as needed */
+}
+
+.text-editpost-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 7.5em;
+    /* Assuming line-height is around 1.5em */
+}
+
+.view-more {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}

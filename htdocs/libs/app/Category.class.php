@@ -40,7 +40,7 @@ class Category
     public static function getAllCategory()
     {
         $db = Database::getConnection();
-        $sql = "SELECT * FROM `category`";
+        $sql = "SELECT * FROM `category` ORDER BY `id` DESC";
         $result = $db->query($sql);
         return iterator_to_array($result);
     }

@@ -1,30 +1,40 @@
 RewriteEngine On
 RewriteBase /
 
-<FilesMatch "\.(?i:gif|jpe?g|jpeg|png|ico|css|js|swf)$">
-
-  <IfModule mod_headers.c>
-    Header set Cache-Control "max-age=172800, public, must-revalidate"
-  </IfModule>
-
-</FilesMatch>
-
-# Task 1: Check files and directory are exist
+# Redirect URLs to redirect.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Task 2: Redirect URLs to redirect.php
+# Handle requests for existing .php files (e.g., "example.php")
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/.]+)$ $1.php [L]
 
-# Task 3: For 400 and 500 
 ErrorDocument 404 /error.php
 ErrorDocument 500 /500.php
 
-# Task 4: For Image
-RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]
+# Exclude certain directories from rewriting
+RewriteRule ^(assets/(css|js)/) - [L]
 
-# Task 5: API Request
+# For Individual Post
+RewriteRule ^/?posts/(\d+)?$ posts.php?post_id=$1 [QSA,L]
+RewriteRule ^/?posts/headline/([^/]+)?$ posts.php?post_title=$1 [QSA,L]
+
+# For Adsense
+RewriteRule ^/?piece/(\d+)?$ commercial.php?post_id=$1 [QSA,L]
+RewriteRule ^/?piece/headline/([^/]+)?$ commercial.php?post_title=$1 [QSA,L]
+RewriteRule ^/?piece/token/([a-zA-Z0-9]+)?$ commercial.php?token=$1 [QSA,L]
+RewriteRule ^/?piece/alias/([a-zA-Z0-9]+)?$ commercial.php?alias=$1 [QSA,L]
+
+# For category filter
+RewriteRule ^/?segment/([^/]+)?$ category.php?category=$1 [QSA,L]
+RewriteRule ^/?category/n/([a-zA-Z]+)?$ category.php?category=$1 [QSA,L]
+
+# For admin features
+RewriteRule ^/?admin/current_page/([a-zA-Z]+)?$ admin.php?current_page=$1 [QSA,L]
+
+# API Request
 RewriteRule ^/?api/([^/]+)?$ api.php?rquest=$1 [L,QSA,NC]
 RewriteRule ^/?api/([^/]+)/(.+)?$ api.php?rquest=$2&namespace=$1 [L,QSA,NC]
 
+# For Image
+RewriteRule ^/?files/([^/]+)?$ files.php?name=$1 [L,QSA,NC]

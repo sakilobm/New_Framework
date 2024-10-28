@@ -2,8 +2,12 @@
 
 include 'libs/load.php';
 
-if (Session::isAuthenticated()) {
-    Session::renderPageRegister();
+if (!Session::isAuthenticated()) {
+    header('location: /');
+    exit;
 }
-header('location: /');
-exit;
+if (Session::isAuthenticated()) {
+    header('location: /admin');
+    exit;
+}
+Session::renderPageRegister();

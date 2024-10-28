@@ -1,8 +1,0 @@
-{
-    "db_server": "localhost",
-    "db_username": "happysb",
-    "db_password": "SB@5742qt",
-    "db_name": "apple",
-    "base_path": "/",
-    "upload_path": "/home/reviewernews/image_uploads/"
-}

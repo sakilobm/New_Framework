@@ -8,7 +8,8 @@ class Session
 {
     public static $isError = false;
     public static $user = null;
-    public static $usersession = null;
+    public static $usersession;
+
     public static function start()
     {
         session_start();
@@ -80,8 +81,9 @@ class Session
         }
     }
 
-    public static function loadTemplate($name)
+    public static function loadTemplate($name, $data = [])
     {
+        extract($data);
         $script = $_SERVER['DOCUMENT_ROOT'] . get_config('base_path') . "_templates/$name.php";
         if (is_file($script)) {
             include $script;
@@ -101,6 +103,26 @@ class Session
     public static function renderPage()
     {
         Session::loadTemplate('_master');
+    }
+    public static function renderPageTrends()
+    {
+        Session::loadTemplate('_masterOfTrends');
+    }
+    public static function renderPageInfos()
+    {
+        Session::loadTemplate('_masterOfInfos');
+    }
+    public static function renderPageOfLegal()
+    {
+        Session::loadTemplate('_masterOfLegalDocs');
+    }
+    public static function renderPagePost()
+    {
+        Session::loadTemplate('_masterForPost');
+    }
+    public static function renderPageCom()
+    {
+        Session::loadTemplate('_masterForCom');
     }
 
     public static function renderPageLogin()
@@ -138,19 +160,7 @@ class Session
             die();
         }
     }
-    public static function getAllAdmin()
-    {
-        $conn = Database::getConnection();
-        $sql = "SELECT * FROM `auth` LIMIT 50";
-        $result = $conn->query($sql);
-        return iterator_to_array($result);
-    }
-    public static function deleteAdmin($id)
-    {
-        $conn = Database::getConnection();
-        $sql = "DELETE FROM `auth` WHERE `id` = '$id' LIMIT 50";
-        return $conn->query($sql);
-    }
+
     public static function countAllUser()
     {
         $db = Database::getConnection();
@@ -161,5 +171,31 @@ class Session
             return $row['count'];
         }
         return 0;
+    }
+    public static function getRequestPageName()
+    {
+        $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        return explode('/', trim($urlPath, '/'));
+    }
+    public static function sendEmail()
+    {
+        $name = htmlspecialchars($_POST['name']);
+        $surname = htmlspecialchars($_POST['surname']);
+        $email = htmlspecialchars($_POST['email']);
+        $subject = htmlspecialchars($_POST['subject']);
+        $message = htmlspecialchars($_POST['message']);
+
+        $to = "b.sakilobm@gmail.com";
+
+        $email_subject = "New Contact Form Submission: $subject";
+
+        $email_body = "You have received a new message from the $name on your sheeinfo website.\n\n" .
+            "Name: $name $surname\n" .
+            "Email: $email\n" .
+            "Message: \n$message";
+        $headers = "From: $email\r\n";
+        $headers .= "Reply-To: $email\r\n";
+
+        return mail($to, $email_subject, $email_body, $headers);
     }
 }
