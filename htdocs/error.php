@@ -8,7 +8,7 @@ include_once 'libs/load.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error 404</title>
-    <link rel="stylesheet" href="<? get_config('base_path'); ?>/css/error.css">
+    <link rel="stylesheet" href="<? get_config('base_path'); ?>/assets/css/error.css">
     <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
 </head>
 

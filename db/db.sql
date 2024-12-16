@@ -78,18 +78,4 @@ CREATE TABLE `session` (
   CONSTRAINT `session_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-DROP TABLE IF EXISTS `urls`;
-CREATE TABLE `urls` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `short_url` varchar(255) NOT NULL,
-  `long_url` text NOT NULL,
-  `alias` varchar(255) DEFAULT NULL,
-  `domain` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `short_url` (`short_url`),
-  UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
 -- 2024-08-31 16:29:16

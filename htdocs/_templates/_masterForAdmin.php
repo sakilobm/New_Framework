@@ -46,8 +46,8 @@ $currentPage = Session::getCurrentPageIdentifier();
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<? get_config('base_path'); ?>js/admin_dashboard.js"></script>
-    <script src="<? get_config('base_path'); ?>js/toastv3.js"></script>
+    <script src="<? get_config('base_path'); ?>assets/js/admin_dashboard.js"></script>
+    <script src="<? get_config('base_path'); ?>assets/js/toastv3.js"></script>
 </body>
 
 </html>
