@@ -81,7 +81,17 @@
                     </defs>
                 </svg>
             </div>
-
+            <div class="menu">
+                <p class="option">Ui</p>
+                <p class="option">App</p>
+                <p class="option">Web</p>
+                <p class="option">Animation</p>
+                <p class="option">3d</p>
+            </div>
+            <div class="play-button">
+                <img src="<? get_config('base_path') ?>/assets/svg/play_button.svg" alt="YouTube">
+                <p class="option">Play</p>
+            </div>
             <div class="profile">
                 <h1>Hello<span>.</span></h1>
                 <div class="name-line">
@@ -105,7 +115,31 @@
         </div>
     </div> -->
 
-    
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-links">
+            <a href="#tutorials" class="nav-item">Tutorials</a>
+            <a href="#hello" class="nav-item active">
+                Hello
+                <div class="underline"></div>
+            </a>
+            <a href="#work" class="nav-item">Work</a>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-icon">
+                <img src="<? get_config('base_path') ?>/assets/images/YouTube.png" alt="YouTube">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="<? get_config('base_path') ?>/assets/images/Facebook.png" alt="Facebook">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="<? get_config('base_path') ?>/assets/images/Instagram.png" alt="Instagram">
+            </a>
+            <a href="#" class="social-icon">
+                <img src="<? get_config('base_path') ?>/assets/images/Twitter.png" alt="Twitter">
+            </a>
+        </div>
+    </nav>
 
     <!-- Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

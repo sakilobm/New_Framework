@@ -1,4 +1,3 @@
-/htdocs/assets/*
 /project/grunt/node_modules
 /project/config.json
 /htdocs/libs/vendor
