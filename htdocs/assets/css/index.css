@@ -75,6 +75,40 @@ p {
     color: var(--text-primary);
 }
 
+/* Cursor */
+.ball {
+    width: 10px;
+    height: 200px;
+    position: absolute;
+    pointer-events: none;
+    transition: transform 0.1s linear;
+}
+
+.ball::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: -50%;
+    z-index: 99;
+}
+
+.ball::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    left: -125%;
+    z-index: 99;
+}
+
 /* Spacing Utilities */
 .mt-sm {
     margin-top: var(--space-sm);
@@ -100,7 +134,7 @@ p {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: calc(100vh - 139px);
+    height: 100vh;
     width: 100vw;
 }
 
@@ -113,6 +147,13 @@ p {
 .center-side-circle svg {
     width: 650px;
     height: 650px;
+}
+
+.circles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
 }
 
 /*.....SECTION PROFILE....*/
@@ -184,7 +225,7 @@ p {
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 77rem;
+    right: 31rem;
     gap: 10px;
 }
 
@@ -207,7 +248,7 @@ p {
     display: flex;
     position: absolute;
     top: 40rem;
-    right: 35rem;
+    right: 34rem;
     align-items: center;
     gap: 15px;
 }
@@ -217,17 +258,15 @@ p {
     height: 60px;
 }
 
-.play-button img:hover {
-    transform: scale(1);
-}
-
 /*.....SECTION BOTTOM NAVIGATION....*/
 .bottom-nav {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 50px;
-    color: var(--text-primary);
+    position: absolute;
+    width: 100vw;
+    bottom: 2rem;
 }
 
 /* Navigation Links */
@@ -265,7 +304,7 @@ p {
 /* Social Media Links */
 .social-links {
     display: flex;
-    gap: 20px;
+    gap: 12px;
     position: absolute;
     right: 30px;
     margin-top: 10px;
@@ -282,38 +321,18 @@ p {
     filter: brightness(1);
 }
 
-/* Cursor */
-.ball {
-    width: 10px;
-    height: 200px;
+.top-dots {
     position: absolute;
-    pointer-events: none;
-    transition: transform 0.1s linear;
+    top: 5rem;
+    right: 5rem;
+    z-index: 4;
 }
 
-.ball::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--primary);
-    border-radius: 50%;
+.bottom-dots {
     position: absolute;
-    top: -3px;
-    left: -50%;
-    z-index: 99;
-}
-
-.ball::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border: 1px solid var(--primary);
-    border-radius: 50%;
-    position: absolute;
-    top: -10px;
-    left: -125%;
-    z-index: 99;
+    bottom: 6rem;
+    left: 9rem;
+    z-index: 4;
 }
 
 /*.....RESPONSIVE....*/
